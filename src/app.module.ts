@@ -16,7 +16,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       port: parseInt(process.env.POSTGRES_PORT),
       password: process.env.POSTGRES_PASSWORD,
       entities:[`${__dirname}/**/*.entity{.js,.ts}`],
-      synchronize:true// ideal é ser false
+      synchronize:false,
+      migrations: [`${__dirname}/migration/{.ts,*.js}`],
+      migrationsRun:true
     }),
     UserModule
   ],
