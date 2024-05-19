@@ -9,14 +9,14 @@ import { DbModule } from './db/db.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      isGlobal:true,
-      envFilePath:['.env.development.local'], //vendas_online_backend/.env.development
+      isGlobal: true,
+      envFilePath: ['.env'], //vendas_online_backend/.env.development
     }),
     UserModule,
     StateModule,
     CityModule,
     AddressModule,
-    DbModule
+    DbModule,
   ],
   controllers: [],
   providers: [],

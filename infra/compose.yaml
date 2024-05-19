@@ -1,7 +1,7 @@
 services:
   databases:
-    image: "postgres:16.2-alpine3.19"
+    image: 'postgres:16.2-alpine3.19'
     env_file:
-      - "../.env.development.local"
+      - '../.env'
     ports:
-      - "5432:5432"
+      - '5432:5432'
