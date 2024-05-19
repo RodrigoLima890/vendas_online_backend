@@ -14,7 +14,7 @@ const dataSourceOptions: DataSourceOptions = {
   database: configService.get<string>('POSTGRES_DB'),
   port: +configService.get<number>('POSTGRES_PORT'),
   password: configService.get<string>('POSTGRES_PASSWORD'),
-  entities: [StateEntity],
+  entities: [`${__dirname}/entities/**`],
   synchronize: false,
   migrations: [`${__dirname}/migrations/**`],
 };
