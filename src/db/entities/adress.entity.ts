@@ -13,7 +13,7 @@ export class AddressEntity{
     complement:string
 
     @Column({ name:"cep",nullable:false})
-    cap:number
+    cep:string
 
     @Column({name:"number",nullable:false})
     numberAddress:number
