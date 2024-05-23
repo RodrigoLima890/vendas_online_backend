@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { AddressController } from './address.controller';
 import { AddressService } from './address.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AddressEntity } from 'src/db/entities/adress.entity';
+import { AddressEntity } from 'src/db/entities/address.entity';
 import { UserModule } from 'src/user/user.module';
 import { CityModule } from 'src/city/city.module';
 

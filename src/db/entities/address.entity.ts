@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { UserEntity as User } from "./user.entity";
 
 @Entity({name: 'address'})
 export class AddressEntity{
@@ -20,6 +21,13 @@ export class AddressEntity{
 
     @Column({name:"city_id",nullable:false})
     cityId:number
+
+    @ManyToOne(()=> User, (user) => user.addresses)
+    @JoinColumn({name:'user_id', referencedColumnName:'id'})
+    user?:User
+
+    @OneToMany(()=>AddressEntity, (address)=> address.user)
+    city ?: AddressEntity[];
 
     @Column({name:"created_at"})
     createdAt:Date

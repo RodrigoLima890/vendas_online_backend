@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { CityEntity } from "./city.entity";
 
 @Entity({name: 'state'})
 export class StateEntity{
@@ -12,6 +13,9 @@ export class StateEntity{
     @Column({ name:"uf",nullable:false})
     uf:string
 
+    @OneToMany(()=> CityEntity, (city) => city.state)
+    cities:CityEntity[]
+    
     @Column({name:"created_at"})
     createdAt:Date
 

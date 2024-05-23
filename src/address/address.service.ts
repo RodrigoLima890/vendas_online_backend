@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { AddressEntity } from 'src/db/entities/adress.entity';
+import { AddressEntity } from 'src/db/entities/address.entity';
 import { Repository } from 'typeorm';
 import { CreateAddressDto } from './dtos/createAddress.dto';
 import { UserService } from 'src/user/user.service';
@@ -23,6 +23,10 @@ export class AddressService {
             ...createAddressDto,
             userId
         })
+    }
+
+    async getAllAddress():Promise<AddressEntity[]>{
+        return this.addressRepository.find();
     }
 
 
