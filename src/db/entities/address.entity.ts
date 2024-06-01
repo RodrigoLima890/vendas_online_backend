@@ -1,5 +1,6 @@
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { UserEntity as User } from "./user.entity";
+import { CityEntity } from "./city.entity";
 
 @Entity({name: 'address'})
 export class AddressEntity{
@@ -26,8 +27,9 @@ export class AddressEntity{
     @JoinColumn({name:'user_id', referencedColumnName:'id'})
     user?:User
 
-    @OneToMany(()=>AddressEntity, (address)=> address.user)
-    city ?: AddressEntity[];
+    @ManyToOne(()=>CityEntity, (city)=> city.addresses)
+    @JoinColumn({name: "city_id", referencedColumnName:'id'})
+    city ?: CityEntity;
 
     @Column({name:"created_at"})
     createdAt:Date
