@@ -1,7 +1,18 @@
-import { Body, Controller, Post, UsePipes, ValidationPipe } from '@nestjs/common';
+import {
+    Body,
+    Controller,
+    Get,
+    HttpCode,
+    HttpStatus,
+    Post,
+    Request,
+    UseGuards
+  } from '@nestjs/common';  
 import { ReturnUserDto } from 'src/user/dtos/returnUser.dto';
 import { LoginDto } from './dtos/login.dto';
 import { AuthService } from './auth.service';
+import { AuthGuard } from './auth.guard';
+import { Public } from './constants';
 
 @Controller('auth')
 export class AuthController {
@@ -10,10 +21,16 @@ export class AuthController {
         private readonly authService:AuthService
     ){}
 
-    @UsePipes(ValidationPipe)
-    @Post()
-    async login(@Body() login:LoginDto): Promise<ReturnUserDto> {
-        return new ReturnUserDto(await this.authService.login(login));
+    @Public()
+    @HttpCode(HttpStatus.OK)
+    @Post('login')
+    login(@Body() login:LoginDto): Record<string,any> {
+        return this.authService.login(login);
     }
 
+    @UseGuards(AuthGuard)
+    @Get('profile')
+    getProfile(@Request() req){
+        return req.user;
+    }
 }
