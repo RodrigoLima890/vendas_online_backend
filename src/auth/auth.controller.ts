@@ -27,10 +27,4 @@ export class AuthController {
     login(@Body() login:LoginDto): Record<string,any> {
         return this.authService.login(login);
     }
-
-    @UseGuards(AuthGuard)
-    @Get('profile')
-    getProfile(@Request() req){
-        return req.user;
-    }
 }

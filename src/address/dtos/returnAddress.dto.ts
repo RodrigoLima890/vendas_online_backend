@@ -3,14 +3,11 @@ import { AddressEntity } from "src/db/entities/address.entity";
 
 export class ReturnAddressDto{
     numberAddress: number
-
     complement:string
-
     cep:string
-
     cpf:string
-    
     city?:ReturnCityDto;
+
     constructor(addressEntity:AddressEntity){
         this.numberAddress = addressEntity.numberAddress;
         this.cep = addressEntity.cep;
