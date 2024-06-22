@@ -29,7 +29,9 @@ export class CreateTableAddress1715951158152 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        queryRunner.query(`DROP TABLE public.address; `)
+        queryRunner.query(`
+            DELETE FROM public.address;
+            DROP TABLE public.address; `)
     }
 
 }
