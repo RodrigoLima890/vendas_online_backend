@@ -8,6 +8,7 @@ import { AddressModule } from './address/address.module';
 import { DbModule } from './db/db.module';
 import { CacheModule } from './cache/cache.module';
 import { AuthModule } from './auth/auth.module';
+import { TypeUserModule } from './type_user/type_user.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -21,6 +22,7 @@ import { AuthModule } from './auth/auth.module';
     DbModule,
     CacheModule,
     AuthModule,
+    TypeUserModule,
   ],
   controllers: [],
   providers: [
