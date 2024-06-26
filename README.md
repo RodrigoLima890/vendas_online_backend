@@ -1,38 +1,35 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Tecnologias Usadas até o momento
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## Nest js
+## TypeScript
+## TypeOrm
+## Docker compose
+## PostgreSql
+## JWT
+<hr/>
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
-
-## Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
-## Installation
-
+# Estruturas do NEST JS
+## Modules
+- Usados para agrupar os componentes relacionados como controllers e providers
+## Controllers
+- São os responsaveis por lidar com requisições HTTP e definir respostas corretas
+##  Providers
+- São classes que são injetadas como dependencia eles podem ser services, repositories, helpers e (ect)
+## Services
+- São providers que lidam com a parte da lógica de negócio. Serão úteis para prover uma camada a mais para separar a logica de negocio dos controllers.
+- Serão injetadas nos controllers.
+## Entities
+- Represetam os modelos de dados que serão usados no ORM
+  - DTO: Usei o DTO para tratar algumas respostas para o cliente, para retirar informações desnecessárias assim reduzindo o payload de alguns endPoints ou apenas melhorando a reposta
+## Repositories
+- São usados para gerenciar as operações com o banco de dados
+- Eles encapsulam a lógica de acesso ao banco
+  
+# Instalação
 ```bash
 $ npm install
 ```
-
-## Running the app
+# Rodando o aplicativo
 
 ```bash
 # development
@@ -57,17 +54,10 @@ $ npm run test:e2e
 # test coverage
 $ npm run test:cov
 ```
+### esta é uma API para prover um e-commerce
 
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
+## Segurança
+- Criei um modulo para servir como middleware de autenticação de token JWT(auth). Assim protejento as rotas privadas com os user guards do nest js
 ## License
 
 Nest is [MIT licensed](LICENSE).
