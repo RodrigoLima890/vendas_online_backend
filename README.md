@@ -1,3 +1,5 @@
+## API para prover um e-commerce
+
 # Tecnologias Usadas até o momento
 
 ## Nest js
@@ -24,6 +26,8 @@
 ## Repositories
 - São usados para gerenciar as operações com o banco de dados
 - Eles encapsulam a lógica de acesso ao banco
+
+<hr/>
   
 # Instalação
 ```bash
@@ -54,10 +58,12 @@ $ npm run test:e2e
 # test coverage
 $ npm run test:cov
 ```
-### esta é uma API para prover um e-commerce
+<hr/>
 
 ## Segurança
 - Criei um modulo para servir como middleware de autenticação de token JWT(auth). Assim protejento as rotas privadas com os user guards do nest js
-## License
 
+<hr/>
+
+## License
 Nest is [MIT licensed](LICENSE).
