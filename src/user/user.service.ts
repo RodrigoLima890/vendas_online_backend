@@ -12,13 +12,16 @@ export class UserService {
         private readonly userRepository: Repository<UserEntity>,
     ){}
 
+    async findOne(userId: number): Promise<UserEntity> {
+        return await this.userRepository.findOne({where: {id:userId}, relations: ['typeUser'] });
+    }
+
     async createUser(createUserDto: CreateUserDto): Promise<UserEntity>{
         const saltOrRounds = 10;
         const passwordHash = await hash(createUserDto.password, saltOrRounds);
 
         return this.userRepository.save({
             ...createUserDto,
-            typeUser:3,
             password: passwordHash
         })
     }
@@ -46,14 +49,12 @@ export class UserService {
             where:{
                 id:userId
             },
-            relations:{
-                addresses:{
-                    city:{
-                        state:true
-                    }
-                },
+            relations:[
+                'typeUser',
+                'addresses',
+                'addresses.city'
+            ]
 
-            }
         })
     }
     async getUserByEmail(email: string):Promise<UserEntity>{

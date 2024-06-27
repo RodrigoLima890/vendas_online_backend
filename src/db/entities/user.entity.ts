@@ -1,6 +1,6 @@
-import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { AddressEntity as Addresses} from "./address.entity";
-import { TypeUserEntity } from "./type_user.entity";
+import { TypeUserEntity as TypeUser } from "./type_user.entity";
 import { Type } from "class-transformer";
 
 @Entity({name: 'user'})
@@ -24,9 +24,9 @@ export class UserEntity{
     @Column({name:"cpf",nullable:false})
     cpf:string
 
-    @OneToOne(()=>TypeUserEntity)
+    @ManyToOne(()=>TypeUser, (typeUser)=>typeUser.id)
     @JoinColumn({name:'type_user'})
-    typeUser:number
+    typeUser:TypeUser
 
     @OneToMany(()=>Addresses, (addresses)=> addresses.user)
     addresses?:Addresses[];
