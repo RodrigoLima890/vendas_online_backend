@@ -26,6 +26,10 @@
 ## Repositories
 - São usados para gerenciar as operações com o banco de dados
 - Eles encapsulam a lógica de acesso ao banco
+## Decorator
+- é um tipo de declaração que pode ser usada em vários lugares
+- resulmindo é uma função que pode ser usada em vários lugares
+
 
 <hr/>
   
