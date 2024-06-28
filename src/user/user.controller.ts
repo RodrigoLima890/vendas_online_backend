@@ -4,6 +4,7 @@ import { UserService } from './user.service';
 import { UserEntity } from '../db/entities/user.entity';
 import { ReturnUserDto } from './dtos/returnUser.dto';
 import { AuthGuard } from 'src/auth/auth.guard';
+import { User } from './user.decorator';
 
 @Controller('user')
 export class UserController {
@@ -27,7 +28,7 @@ export class UserController {
 
     @UseGuards(AuthGuard)
     @Get('/:userId')
-    async getUserById(@Param('userId') userId:number):Promise<ReturnUserDto>{
+    async getUserById(@Param('userId') @User() userId:number):Promise<ReturnUserDto>{
         return new ReturnUserDto(await this.userService.getUserByIdUsingReferences(userId));
     }
 }

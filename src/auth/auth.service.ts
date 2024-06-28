@@ -19,7 +19,7 @@ export class AuthService {
         if (!user || !isMatch) {
             throw new NotFoundException("Email or password invalid");
         }
-        const payload = {username: user.name, email: user.email}
+        const payload = {username: user.name, email: user.email, type_user: user.typeUser}
         return {
             access_token: await this.jwtService.signAsync(payload)
         }
