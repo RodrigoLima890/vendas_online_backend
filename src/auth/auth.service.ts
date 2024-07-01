@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { UserEntity } from 'src/db/entities/user.entity';
 import { LoginDto } from './dtos/login.dto';
 import { UserService } from 'src/user/user.service';
@@ -17,7 +17,7 @@ export class AuthService {
         const isMatch = await compare(loginDto.password, user?.password||'');
 
         if (!user || !isMatch) {
-            throw new NotFoundException("Email or password invalid");
+            throw new UnauthorizedException("Email or password invalid");
         }
         const payload = {username: user.name, email: user.email, type_user: user.typeUser}
         return {

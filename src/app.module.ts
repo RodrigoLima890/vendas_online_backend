@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module } from '@nestjs/common';
 import { UserModule } from './user/user.module';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -9,6 +9,7 @@ import { DbModule } from './db/db.module';
 import { CacheModule } from './cache/cache.module';
 import { AuthModule } from './auth/auth.module';
 import { TypeUserModule } from './type_user/type_user.module';
+import * as cors from 'cors';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -28,4 +29,14 @@ import { TypeUserModule } from './type_user/type_user.module';
   providers: [
   ],
 })
-export class AppModule {}
+export class AppModule {
+  configure(consumer: MiddlewareConsumer){
+    consumer.apply(cors({
+      origin: ['http://localhost:5000'], // Lista de origens permitidas
+      methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos HTTP permitidos
+      allowedHeaders: ['Content-Type', 'Authorization', 'Access-Control-Allow-Origin'], // Cabeçalhos permitidos
+      credentials: true, // Habilita credenciais (cookies, cabeçalhos de autenticação) em requisições CORS
+    }))
+    .forRoutes('*')
+  }
+}
