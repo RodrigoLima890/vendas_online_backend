@@ -5,6 +5,7 @@ import { ReturnTypeUserDto } from "src/type_user/dtos/returnTypeUserDto";
 
 export class ReturnUserDto{
     constructor(userEntity:UserEntity){
+        console.log(userEntity);
         this.id = userEntity.id;
         this.name = userEntity.name;
         this.email = userEntity.email;

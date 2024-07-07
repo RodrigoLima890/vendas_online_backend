@@ -17,7 +17,7 @@ export class AuthService {
         const isMatch = await compare(loginDto.password, user?.password||'');
 
         if (!user || !isMatch) {
-            throw new UnauthorizedException("Email or password invalid");
+            throw new UnauthorizedException("Email ou Senha invalidos");
         }
         const payload = {username: user.name, email: user.email, type_user: user.typeUser}
         return {

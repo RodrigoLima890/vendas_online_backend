@@ -13,6 +13,7 @@ export class UserService {
     ){}
 
     async createUser(createUserDto: CreateUserDto): Promise<UserEntity>{
+        console.log(createUserDto)
         const saltOrRounds = 10;
         const passwordHash = await hash(createUserDto.password, saltOrRounds);
 
@@ -23,7 +24,11 @@ export class UserService {
     }
 
     async getAllUser(): Promise<UserEntity[]>{
-        return this.userRepository.find();
+        return this.userRepository.find({
+            relations:[
+                'typeUser'
+            ]
+        });
     }
 
     async getUserById(userId: number):Promise<UserEntity>{
@@ -41,7 +46,7 @@ export class UserService {
     }
 
     async getUserByIdUsingReferences(userId:number):Promise<UserEntity>{
-        return this.userRepository.findOne({
+        const user = await this.userRepository.findOne({
             where:{
                 id:userId
             },
@@ -52,6 +57,10 @@ export class UserService {
             ]
 
         })
+        if(!user){
+            throw new NotFoundException('Usuario não encontrado')
+        }
+        return user;
     }
     async getUserByEmail(email: string):Promise<UserEntity>{
         const user = await this.userRepository.findOne({

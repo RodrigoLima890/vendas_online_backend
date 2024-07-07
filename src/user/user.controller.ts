@@ -21,15 +21,15 @@ export class UserController {
         return this.userService.createUser(createUser);
     }
 
-    @UseGuards(AuthGuard)
+    // @UseGuards(AuthGuard)
     @Get()
     async getAllUser(): Promise<ReturnUserDto[]>{
         return (await this.userService.getAllUser()).map((userEntity) => new ReturnUserDto(userEntity));
     }
 
-    @UseGuards(AuthGuard)
+    // @UseGuards(AuthGuard)
     @Get('/:userId')
     async getUserById(@Param('userId') @User() userId:number):Promise<ReturnUserDto>{
-        return new ReturnUserDto(await this.userService.getUserByIdUsingReferences(userId));
+       return new ReturnUserDto(await this.userService.getUserByIdUsingReferences(userId));
     }
 }

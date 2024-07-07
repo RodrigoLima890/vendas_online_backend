@@ -24,6 +24,9 @@ export class UserEntity{
     @Column({name:"cpf",nullable:false})
     cpf:string
 
+    @Column({name:'type_user', nullable:false})
+    type_user:number
+
     @ManyToOne(()=>TypeUser, (typeUser)=>typeUser.id)
     @JoinColumn({name:'type_user'})
     typeUser:TypeUser

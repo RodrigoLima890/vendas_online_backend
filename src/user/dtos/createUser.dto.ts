@@ -16,5 +16,8 @@ export class CreateUserDto {
     
     @IsString()
     password: string;
+
+    @IsNumber()
+    type_user:number
    
 }
