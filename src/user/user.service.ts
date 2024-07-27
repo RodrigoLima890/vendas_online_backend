@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateUserDto } from './dtos/createUser.dto';
 import { UserEntity } from '../db/entities/user.entity';
 import {hash} from 'bcrypt';
@@ -74,5 +74,23 @@ export class UserService {
         }
 
         return user;
+    }
+
+    async atualizarUser(user:CreateUserDto, id:number):Promise<Object>{
+        const userFinder = await this.userRepository.findOneBy({id:id});
+        
+        if(!userFinder) throw new NotFoundException(`Usuario com id ${id} não encontrado encontrado`);
+
+        const update = await this.userRepository.update(
+            {
+                id:id
+            },
+            user
+        );
+        if(!update) throw new BadRequestException("Ocorreu algum erro")
+
+        return {
+            'message': 'usuario alterado com sucesso'
+        }
     }
 }
